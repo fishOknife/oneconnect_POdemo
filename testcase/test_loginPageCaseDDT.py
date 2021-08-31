@@ -1,8 +1,8 @@
-from ddt import ddt, data, unpack
 import sys
 import time
 import unittest
 from selenium import webdriver
+from ddt import ddt, data, unpack
 from webPage.loginPage import LoginClass
 from baseMethod.useExcel import get_excel_data
 

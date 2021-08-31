@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from baseMethod.basePage import BaseClass
 
 
+# 登录页
 class LoginClass(BaseClass):
     # 定位账号
     def find_username_element(self, ):

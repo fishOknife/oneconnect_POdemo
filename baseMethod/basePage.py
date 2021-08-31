@@ -1,6 +1,4 @@
-import sys
-import time
-import logging
+from baseMethod.outPutLog import Log
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
@@ -11,21 +9,24 @@ class BaseClass:
 
     def __init__(self, driver):
         self.driver = driver
-        # log_file = r"F:\Python38 Project\baiduUiPO\logs\124.log"
-        # logging.basicConfig(filename=log_file, level=logging.INFO)
+        # 创建日志对象
+        self.log = Log()
 
     # 元素定位,替代八大定位
     def find_element(self, *locator):
+        self.log.info("开始定位元素")
         WebDriverWait(self.driver, 10, 0.5).until(EC.presence_of_element_located((*locator,)), "等待超时")
         return self.driver.find_element(*locator)
 
     def get_alert_info(self):
+        self.log.info("获取alter信息")
         WebDriverWait(self.driver, 10, 0.5).until(EC.alert_is_present())
         assert_info = self.driver.switch_to.alert.text
         self.driver.switch_to.alert.accept()
         return assert_info
 
     def get_title_info(self):
+        self.log.info("获取title信息")
         assert_info = self.driver.title
         return assert_info
 
