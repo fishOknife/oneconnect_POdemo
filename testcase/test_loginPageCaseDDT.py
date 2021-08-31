@@ -7,7 +7,6 @@ from webPage.loginPage import LoginClass
 from baseMethod.useExcel import get_excel_data
 
 FilePath = sys.path[1] + r"\testData\testData.xlsx"
-# print(FilePath)
 SheetName = "登录"
 test_data = get_excel_data(FilePath, SheetName)
 
@@ -28,7 +27,7 @@ class TestLogin(unittest.TestCase):
 
     @data(*test_data)
     @unpack
-    def test_0_case(self, username, password, target, assertInfo):
+    def test_0_case(self, username, password, target, assert_info):
         self.loginPageObject.find_username_element().clear()
         self.loginPageObject.find_username_element().send_keys(username)
         self.loginPageObject.find_password_element().clear()
@@ -36,8 +35,8 @@ class TestLogin(unittest.TestCase):
         self.loginPageObject.find_submit_element().click()
         time.sleep(1)
         # 断言
-        assert_info = self.loginPageObject.get_page_info(target)
-        self.assertEqual(assert_info, assertInfo)
+        return_assert_info = self.loginPageObject.get_page_info(target)
+        self.assertEqual(return_assert_info, assert_info)
 
     def tearDown(self) -> None:
         pass
