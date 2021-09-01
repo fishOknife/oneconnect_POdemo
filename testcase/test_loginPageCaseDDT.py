@@ -5,6 +5,7 @@ from selenium import webdriver
 from ddt import ddt, data, unpack
 from webPage.loginPage import LoginClass
 from baseMethod.useExcel import get_excel_data
+from baseMethod.outPutLog import Log
 
 FilePath = sys.path[1] + r"\testData\testData.xlsx"
 SheetName = "登录"
@@ -17,6 +18,7 @@ class TestLogin(unittest.TestCase):
     def setUpClass(cls):
         cls.url = "http://1.117.169.63/myapps/login.html"
         cls.driver = webdriver.Chrome()
+        cls.log = Log()
         # cls.driver.implicitly_wait(10)
 
     def setUp(self) -> None:
@@ -43,6 +45,7 @@ class TestLogin(unittest.TestCase):
 
     @classmethod
     def tearDownClass(cls):
+        cls.log.info("===========================测试结束===================================")
         cls.driver.quit()
 
 

@@ -15,12 +15,12 @@ class BaseClass:
     # 元素定位,替代八大定位
     def find_element(self, *locator):
         self.log.info("开始定位元素")
-        WebDriverWait(self.driver, 10, 0.5).until(EC.presence_of_element_located((*locator,)), "等待超时")
+        WebDriverWait(self.driver, 10, 0.5).until(EC.presence_of_element_located((*locator,)), "查找元素超时")
         return self.driver.find_element(*locator)
 
     def get_alert_info(self):
         self.log.info("获取alter信息")
-        WebDriverWait(self.driver, 10, 0.5).until(EC.alert_is_present())
+        WebDriverWait(self.driver, 10, 0.5).until(EC.alert_is_present(), "查找alter超时")
         assert_info = self.driver.switch_to.alert.text
         self.driver.switch_to.alert.accept()
         return assert_info
